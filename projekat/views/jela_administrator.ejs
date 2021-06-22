@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ponuda</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body class="restorani">
+
+<div class="container-fluid">
+    <div class="row">
+        <%if(akcija.length!=0){%>
+        <h2>Posebna ponuda:</h2>
+        <%}%>
+        <%for(let i=0;i<akcija.length;i++){%>
+        <%if(akcija[i].status_a==='aktivan'){%>
+        <div class="col-lg-4 col-sm-12 razmak">
+            <div class="ikonica">
+                <img src="/images/<%=akcija[i].slika%>">
+                <h4><em><%=akcija[i].naziv%></em></h4>
+                <p>Stara cijena: <del><%=akcija[i].cijena%> KM</del> </p>
+                <p>Cijena: <%=akcija[i].a_cijena%> KM</p>
+                <p>Važi do: <%=akcija[i].datum_trajanja%></p>
+
+                <form method="post" action="/users/akciju/obrisi" >
+
+                    <input type="hidden" value="<%=akcija[i].id%>" name="id">
+                    <input type="hidden" value="<%=akcija[i].id_jela%>" name="jelo">
+                    <input type="hidden" value="<%=restoran%>" name="restoran">
+                    <button type="button" class="btn btn-default " onclick="uredi_akciju('<%=akcija[i].id%>','<%=akcija[i].id_restorana%>')">Uredi </button>
+                    <button type="submit" class="btn btn-danger " >Izbriši </button>
+                </form>
+
+
+
+
+            </div>
+        </div>
+        <%}%>
+        <%}%>
+    </div>
+    <div class="row">
+        <h2>Preporućujemo: </h2>
+        <%for(let i=0;i<jela.length;i++){%>
+        <%if(jela[i].status==='aktivan' && jela[i].grupni_meni===1){%>
+        <div class="col-lg-4 col-sm-12 razmak">
+            <div class="ikonica">
+                <img src="/images/<%=jela[i].slika%>">
+                <h4><em><%=jela[i].naziv%></em></h4>
+                <p>Cijena: <%=jela[i].cijena%> KM</p>
+                <form method="post" action="/users/jelo/obrisi" >
+
+                    <input type="hidden" value="<%=jela[i].id%>" name="id">
+                    <input type="hidden" value="<%=restoran%>" name="restoran">
+                    <button type="button" class="btn btn-default " onclick="uredi('<%=jela[i].id%>','<%=restoran%>')" >Uredi </button>
+                    <button type="submit" class="btn btn-danger " >Izbriši </button>
+                </form>
+
+
+            </div>
+        </div>
+        <%}%>
+        <%}%>
+    </div>
+
+    <div class="row">
+        <h2>Meni: </h2>
+        <%for(let i=0;i<jela.length;i++){%>
+        <%if(jela[i].status==='aktivan' && jela[i].grupni_meni===0){%>
+        <div class="col-lg-4 col-sm-12 razmak">
+            <div class="ikonica">
+                <img src="/images/<%=jela[i].slika%>">
+                <h4><em><%=jela[i].naziv%></em></h4>
+                <p>Cijena: <%=jela[i].cijena%> KM</p>
+                <form method="post" action="/users/jelo/obrisi" >
+
+                    <input type="hidden" value="<%=jela[i].id%>" name="id">
+                    <input type="hidden" value="<%=restoran%>" name="restoran">
+                    <button type="button" class="btn btn-default " onclick="uredi('<%=jela[i].id%>','<%=restoran%>')" >Uredi </button>
+                    <button type="submit" class="btn btn-danger " >Izbriši </button>
+                </form>
+
+
+            </div>
+        </div>
+        <%}%>
+        <%}%>
+    </div>
+</div>
+<script>
+  /*  function izbrisi_akciju(id){
+        window.location.href="/users/akciju/obrisi/"+id+"/"+restoran;
+    }*/
+  function uredi(id,restoran){
+      window.location.href="/users/uredi/jelo/"+id+'/'+restoran;
+  }
+  function uredi_akciju(id,restoran){
+      window.location.href="/users/uredi/akciju/"+id+'/'+restoran;
+  }
+</script>
+</body>
+
+
+</body>
+</html>

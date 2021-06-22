@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Restorani</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body class="restorani" >
+
+<div class="navbarr">
+    <form method="post" action="/pretrazi/jelo">
+    <input type="text" name="ime" placeholder="Pretrazi" id="ime_jela">
+
+    <button type="submit" class="btn btn-default pretrazi"><i class="fa fa-search"></i></button>
+    </form>
+    <div class="dropdownn">
+        <button class="dropbtnn">Vrste jela
+            <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-contentt">
+            <%for(let i=0;i<vrsta.length;i++){%>
+            <a  href="/ponuda/jela/<%=vrsta[i].id%>"><%=vrsta[i].naziv%></a>
+            <%}%>
+        </div>
+    </div>
+    <a href="/sve/narudzbe">Sve narudžbe</a>
+    <%if(tip==4){%>
+        <a href="/users/administrator/glavni">Administrator</a>
+        <button type="button" class="btn btn-default dugme1" onclick="logout()">Logout</button>
+<%} else if(tip==3){%>
+        <a href="/users/administrator/restorana/pocetna/<%=id%>">Administrator</a>
+        <button type="button" class="btn btn-default dugme1" onclick="logout()">Logout</button>
+    <%} else if(tip==2){%>
+        <a href="/dostava">Dostavljac</a>
+        <button type="button" class="btn btn-default dugme1" onclick="logout()">Logout</button>
+
+    <%} else{%>
+        <button type="button" class="btn btn-default dugme" onclick="logout()">Logout</button>
+    <%}%>
+</div>
+
+<div class="container-fluid">
+
+    <%for(let i=0;i<restorani.length;i++){%>
+    <%if(restorani[i].status==='aktivan'){%>
+    <div class="col-lg-4 col-sm-12 razmak">
+    <div class="ikonica">
+        <img src="/images/<%=restorani[i].slika%>">
+        <h4><em><%=restorani[i].naziv%></em></h4>
+        <p><%=restorani[i].kategorija%></p>
+        <p>Adresa: <%=restorani[i].adresa%>, <%=restorani[i].grad%></p>
+        <button type="button" class="btn btn-default" onclick="r('<%=restorani[i].id%>')">Pogledaj meni</button>
+    </div>
+</div>
+    <%}%>
+<%}%>
+</div>
+<script>
+    function r(id){
+
+            window.location.href="/restorani/meni/" + id;
+    }
+    function logout(){
+        window.location.href="/logout";
+    }
+
+</script>
+
+</body>
+</html>

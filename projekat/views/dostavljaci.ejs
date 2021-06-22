@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ponuda</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body >
+<div class="container">
+
+    <div class="col-lg-6 col-sm-12">
+        <table class="table tabela">
+
+            <thead>
+            <tr>
+                <th scope="col">Ime</th>
+                <th scope="col">Prezime</th>
+                <th scope="col">Email</th>
+                <th scope="col">Broj telefona</th>
+
+                <th scope="col"></th>
+            </tr>
+            </thead>
+
+            <tbody>
+
+            <%for(let i=0;i<dostavljac.length;i++){%>
+            <tr>
+
+                <td><%=dostavljac[i].ime%></td>
+                <td><%=dostavljac[i].prezime%></td>
+                <td><%=dostavljac[i].email%></td>
+                <td>0<%=dostavljac[i].br_tel%></td>
+               <td> <form method="post" action="/zaposli/dostavljaca">
+                       <input type="hidden" value="<%=dostavljac[i].id_dostavljaca%>" name="id_dostavljaca">
+                       <input type="hidden" value="<%=restoran%>" name="id_restorana">
+
+                <button type="submit" class="btn btn-success" >Zaposli</button>
+                </form></td>
+            </tr>
+            <%}%>
+            </tbody>
+        </table>
+
+
+
+    </div>
+</div>
+
+
+
+</body>
+</html>

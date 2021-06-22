@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Administrator</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+<body>
+
+<div class="row">
+
+    <div class="col-lg-5 col-sm-12" style="margin-left: 5%;" >
+
+        <form class="forma" enctype="multipart/form-data" method="post" action="/users/uredi/akciju">
+            <fieldset>
+                <legend>Promijeni informacije o akciji</legend>
+                <input type="hidden" value="<%=restoran%>" name="id_restorana">
+                <input type="hidden" value="<%=akcija[0].id%>" name="id">
+                <div class="form-group ">
+                    <label>Cijena</label>
+                    <input type="text" class="form-control"   name="cijena" value="<%=akcija[0].a_cijena%>">
+                </div>
+                <div class="form-group ">
+                    <label>Datum isteka akcije</label>
+                    <input type="text" class="form-control"   name="datum" value="<%=akcija[0].datum_trajanja%>">
+                </div>
+
+
+
+
+
+                <div class="form-group">
+                    <input type="submit" value="Dodaj" class="form-control" style="background-color: #cfc8be;">
+                </div>
+
+            </fieldset>
+        </form>
+
+    </div>
+</div>

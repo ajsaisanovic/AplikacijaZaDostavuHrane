@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Administrator</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+<body>
+
+<div class="row">
+
+    <div class="col-lg-5 col-sm-12" style="margin-left: 5%;" >
+
+        <form class="forma" enctype="multipart/form-data" method="post" action="/users/uredi/restoran">
+            <fieldset>
+                <legend>Promijeni informacije o restoranu</legend>
+                <input type="hidden" value="<%=restoran[0].id%>" name="id">
+
+                <input type="hidden" value="<%=restoran[0].slika%>" name="slika" >
+                <div class="form-group ">
+                    <label>Naziv</label>
+                    <input type="text" class="form-control"  name="ime" value="<%=restoran[0].naziv%>">
+                </div>
+                <div class="form-group ">
+                    <label>Adresa</label>
+                    <input type="text" class="form-control"  name="adresa" value="<%=restoran[0].adresa%>">
+                </div>
+
+
+                <div class="form-group ">
+                    <label>Grad</label>
+                    <input type="text" class="form-control"  name="grad" value="<%=restoran[0].grad%>">
+                </div>
+
+                <div class="form-group ">
+                    <label>Broj zvjezdica</label>
+                    <input type="number" class="form-control"  name="br_z" value="<%=restoran[0].br_zvjezdica%>">
+                </div>
+
+                <div class="form-group ">
+                    <label>Kategorija</label>
+                    <input type="text" class="form-control"  name="kat" value="<%=restoran[0].kategorija%>">
+                </div>
+                <div class="form-group ">
+                    <label>Udaljenost na koju dostavljamo</label>
+                    <input type="text" class="form-control"  name="dostava" value="<%=restoran[0].udaljenost_dostave%>">
+                </div>
+
+                <div class="form-group">
+                    <input type="file" class="form-control" name="file">
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" value="Dodaj" class="form-control" style="background-color: #cfc8be;">
+                </div>
+
+            </fieldset>
+        </form>
+
+    </div>
+</div>

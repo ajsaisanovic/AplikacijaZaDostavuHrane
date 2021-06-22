@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ponuda</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body >
+<div class="container">
+    
+    <div class="col-lg-7 col-sm-12">
+        <table class="table tabela">
+
+            <thead>
+            <tr>
+                <th scope="col">Ime</th>
+                <th scope="col">Prezime</th>
+
+                <th scope="col">Jelo</th>
+                <th scope="col">Količina</th>
+                <th scope="col">Račun</th>
+                <th scope="col">Plačanje</th>
+                <th scope="col">Restoran</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+            </tr>
+            </thead>
+
+            <tbody>
+
+            <%for(let i=0;i<dostava.length;i++){%>
+            <tr>
+
+                <td><%=dostava[i].ime%></td>
+                <td><%=dostava[i].prezime%></td>
+
+                <td><%=dostava[i].jelo%></td>
+                <td><%=dostava[i].kolicina%></td>
+                <td><%=dostava[i].ukupna_cijena%>KM</td>
+                <td><%=dostava[i].nacin_placanja%></td>
+                <td><%=dostava[i].restoran%></td>
+                <td><button type="button" class="btn btn-success" onclick="isporucio('<%=dostava[i].id%>')">Uspjesno dostavio</button></td>
+                <td><form method="post" action="/lokacija/narudzbe">
+                    <input type="hidden" value="<%=dostava[i].id_kupca%>" name="id_kupca">
+                    <button type="submit" class="btn btn-warning" >Prikaži na mapi</button>
+                    </form>
+                </td>
+            </tr>
+            <%}%>
+            </tbody>
+        </table>
+
+
+
+    </div>
+</div>
+
+<script>
+    function isporucio(id){
+        window.location.href="/isporucena/dostava/"+id;
+    }
+</script>
+
+</body>
+</html>

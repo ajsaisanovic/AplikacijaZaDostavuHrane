@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Administrator</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+<body>
+<div class="row">
+<div class="col-lg-4 col-sm-12" style="margin-left: 5%;" >
+    <button type="button" class="btn btn-warning" style="width: 100%;" onclick="preusmjeri()">Pregled svih restorana i ponuda</button>
+
+
+    <form class="forma" enctype="multipart/form-data" method="post" action="/users/dodaj/restoran">
+        <fieldset>
+            <legend>Dodajte novi restoran u ponudu</legend>
+
+            <div class="form-group ">
+                <input type="text" class="form-control"  placeholder="Naziv restorana" name="ime" required>
+            </div>
+            <div class="form-group ">
+                <input type="text" class="form-control"  placeholder="Adresa" name="adresa" required>
+            </div>
+
+            <div class="form-group ">
+                <input type="text" class="form-control"  placeholder="Grad" name="grad" required>
+            </div>
+
+            <div class="form-group ">
+                <input type="number" class="form-control" min="1" max="5"  placeholder="Broj zvjezdica" name="br_z" required>
+            </div>
+            <div class="form-group ">
+                <input type="text" class="form-control"  placeholder="Kategorija" name="kat" required>
+            </div>
+            <div class="form-group p">
+                <input type="number" class="form-control"   placeholder="Udaljenost na koju dostavljamo" name="dostava" required>
+            </div>
+            <div class="form-group p">
+                <input type="file" class="form-control"   name="file" required>
+            </div>
+
+
+        </fieldset>
+        <fieldset>
+            <legend>Napravi račun za administratora restorana</legend>
+
+            <div class="form-group ">
+                <input type="text" class="form-control"  placeholder="Ime" name="ime_ad" required>
+            </div>
+            <div class="form-group ">
+                <input type="text" class="form-control"  placeholder="Prezime" name="prezime" required>
+            </div>
+
+            <div class="form-group ">
+                <input type="email" class="form-control"  placeholder="Email" name="email" required>
+            </div>
+
+            <div class="form-group ">
+                <input type="password" class="form-control"  placeholder="Pasvord" name="pass" required>
+            </div>
+            <div class="form-group ">
+                <input type="text" class="form-control"  placeholder="Adresa" name="adresa_ad" required>
+            </div>
+            <div class="form-group p">
+                <input type="text" class="form-control"  placeholder="Broj telefona" name="br" required>
+            </div>
+        </fieldset>
+        <div class="form-group">
+            <input type="submit" value="Dodaj" class="form-control" style="background-color: #cfc8be;">
+        </div><br>
+
+
+    </form>
+</div>
+
+<div class="col-lg-4 col-sm-12" style="margin-top:3%;margin-left: 5%;" >
+
+
+    <form class="forma" method="post" action="/users/dodaj/vrstu/jela">
+        <fieldset>
+            <legend>Dodajte novu vrstu jela</legend>
+
+            <div class="form-group ">
+                <input type="text" class="form-control"  placeholder="Vrsta jela" name="vrsta" required>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Dodaj" class="form-control" style="background-color: #cfc8be;">
+            </div>
+
+        </fieldset>
+    </form>
+
+</div>
+
+</div>
+
+
+<script>
+    function preusmjeri(){
+        window.location.href="/users/administrator/restorani";
+    }
+</script>
+
+</body>
+</html>

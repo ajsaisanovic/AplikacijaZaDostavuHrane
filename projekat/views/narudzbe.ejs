@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ponuda</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body >
+<div class="container">
+    <div class="col-lg-6 col-sm-12">
+        <table class="table tabela">
+            <thead>
+            <tr>
+                <th scope="col">Restoran</th>
+                <th scope="col">Jelo</th>
+                <th scope="col">Vrsta jela</th>
+                <th scope="col">Količina</th>
+                <th scope="col">Ukupna cijena</th>
+                <th scope="col">Status</th>
+            </tr>
+            </thead>
+            <tbody>
+            <%for(let i=0;i<narudzbe.length;i++){%>
+            <tr>
+
+                <td><%=narudzbe[i].restoran%></td>
+                <td><%=narudzbe[i].naziv%></td>
+                <td><%=narudzbe[i].vrsta%></td>
+                <td><%=narudzbe[i].kolicina%></td>
+                <td><%=narudzbe[i].ukupna_cijena%></td>
+                <td><%=narudzbe[i].status%></td>
+            </tr>
+            <%}%>
+            </tbody>
+        </table>
+
+
+
+    </div>
+</div>
+
+
+
+</body>
+</html>

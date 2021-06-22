@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ponuda</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body class="restorani">
+
+<div class="navbarr">
+        <button type="button" class="btn btn-default dugme" onclick="logout()" style="margin-left: 90%;">Logout</button>
+</div>
+
+
+<div class="container-fluid">
+<div class="row">
+    <%if(akcija.length!=0){%>
+    <h2>Posebna ponuda:</h2>
+    <%}%>
+    <%for(let i=0;i<akcija.length;i++){%>
+    <%if(akcija[i].status_a=='aktivan'){%>
+
+    <div class="col-lg-4 col-sm-12 razmak">
+        <div class="ikonica">
+            <img src="/images/<%=akcija[i].slika%>">
+            <h4><em><%=akcija[i].naziv%></em></h4>
+            <p>Restoran: <%=akcija[i].ime_restorana%></p>
+            <p>Stara cijena: <del><%=akcija[i].cijena%> KM</del> </p>
+            <p>Cijena: <%=akcija[i].a_cijena%> KM</p>
+            <form method="post" action="/users/narudzba" >
+                <input type="number" min="1" name="kolicina" placeholder="Količina" class="form-control"  required>
+
+                <label>Vrijeme:  </label>
+                <input type="time" name="vrijeme" default="00:00:00" class="form-control" >
+                <input type="hidden" name="vrijeme_dostave" value="<%=akcija[i].vrijeme_dostave%>">
+
+
+                <label>Nacin placanja</label>
+                <select class="form-control" name="placanje">
+                    <option value="Gotovina" >Gotovina</option>
+                    <option value="Kartica">Kartica</option>
+                </select>
+                <input type="hidden" value="<%=akcija[i].id_restorana%>" name="id_restorana">
+                <input type="hidden" value="<%=akcija[i].a_cijena%>" name="cijena">
+
+                <input type="hidden" value="<%=akcija[i].id_jela%>" name="id_jela">
+                <button type="submit" class="btn btn-success "style="margin-left: 80%; margin-top: 5px;">Naruči </button>
+            </form>
+
+        </div>
+    </div>
+    <%}%>
+    <%}%>
+</div>
+    <div class="row">
+    
+    <h2>Preporućujemo: </h2>
+
+    <%for(let i=0;i<jela.length;i++){%>
+    <%if(jela[i].status==='aktivan' && jela[i].akcija_status==='neaktivan' && jela[i].grupni_meni===1){%>
+    <div class="col-lg-4 col-sm-12 razmak">
+        <div class="ikonica">
+            <img src="/images/<%=jela[i].slika%>">
+            <h4><em><%=jela[i].naziv%></em></h4>
+            <p>Restoran: <%=jela[i].restoran_naziv%></p>
+            <p>Cijena: <%=jela[i].cijena%> KM</p>
+            <form method="post" action="/users/narudzba" >
+                <input type="number" min="1" name="kolicina" placeholder="Količina" class="form-control"  required>
+
+                <label>Vrijeme:  </label>
+                <input type="time" name="vrijeme" default="00:00:00" class="form-control" >
+
+
+
+                <label>Nacin placanja</label>
+                <select class="form-control" name="placanje">
+                    <option value="Gotovina" >Gotovina</option>
+                    <option value="Kartica">Kartica</option>
+                </select>
+                <input type="hidden" value="<%=jela[i].cijena%>" name="cijena">
+                <input type="hidden" value="<%=jela[i].id_restorana%>" name="id_restorana">
+                <input type="hidden" value="<%=jela[i].id%>" name="id_jela">
+                <button type="submit" class="btn btn-success " style="margin-left: 80%; margin-top: 5px;">Naruči </button>
+            </form>
+
+        </div>
+    </div>
+    <%}%>
+    <%}%>
+</div>
+
+    <div class="row">
+        <h2>Meni: </h2>
+        <%for(let i=0;i<jela.length;i++){%>
+        <%if(jela[i].status==='aktivan' && jela[i].akcija_status==='neaktivan' && jela[i].grupni_meni===0){%>
+        <div class="col-lg-4 col-sm-12 razmak">
+            <div class="ikonica">
+                <img src="/images/<%=jela[i].slika%>">
+                <h4><em><%=jela[i].naziv%></em></h4>
+                <p>Restoran: <%=jela[i].restoran_naziv%></p>
+                <p>Cijena: <%=jela[i].cijena%> KM</p>
+                <form method="post" action="/users/narudzba" >
+                    <input type="number" min="1" name="kolicina" placeholder="Količina" class="form-control"  required>
+
+                    <label>Vrijeme:  </label>
+                    <input type="time" name="vrijeme" default="00:00:00" class="form-control" >
+
+                    <label>Nacin placanja</label>
+                    <select class="form-control" name="placanje">
+                        <option value="Gotovina" >Gotovina</option>
+                        <option value="Kartica">Kartica</option>
+                    </select>
+                    <input type="hidden" value="<%=jela[i].cijena%>" name="cijena">
+                    <input type="hidden" value="<%=jela[i].id_restorana%>" name="id_restorana">
+                    <input type="hidden" value="<%=jela[i].id%>" name="id_jela">
+                    <button type="submit" class="btn btn-success " style="margin-left: 80%; margin-top: 5px;">Naruči </button>
+                </form>
+
+            </div>
+        </div>
+        <%}%>
+        <%}%>
+    </div>
+</div>
+<script>
+    function logout(){
+        window.location.href="/logout";
+    }
+</script>
+</body>
+
+
+
+</html>
